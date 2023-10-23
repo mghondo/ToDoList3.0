@@ -3,7 +3,7 @@ import { Button, Modal, ListGroup, Jumbotron } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import './App.css';
 import { FaCheck } from 'react-icons/fa';
-
+import Instructions from "./Instructions";
 
 function TodoApp() {
   const [pending, setPending] = useState([
@@ -41,45 +41,53 @@ function TodoApp() {
 
   return (
     <>
-      <div className="custom-header" style={{marginBottom: '30px'}}>
+      <div className="custom-header" style={{ marginBottom: '30px' }}>
         <h1>Morgan's To Do List</h1>
       </div>
 
-    <div className="container">
+      <Instructions />
 
-      <div className="row"  style={{marginBottom:'30px'}}>
-        <div className="col-md-6">
-          <h2 className="headingstyle">Pending</h2>
-          <ListGroup>
-            {pending.map((task, index) => (
-              <ListGroup.Item
-                key={index}
-                className="list-group-item list-group-item-warning"
-                onClick={() => handleCheck(task)}
-              >
-                {task}
-              </ListGroup.Item>
-            ))}
-          </ListGroup>
-        </div>
-        <div className="col-md-6">
-          <h2 className="headingstyle">Completed</h2>
-          <ListGroup>
-          {completed.map((task, index) => (
-  <ListGroup.Item
-    key={index}
-    className="list-group-item list-group-item-primary"
-    onClick={() => handleCheck(task)}
-  >
-   <FaCheck /> {task} <FaCheck />
-  </ListGroup.Item>
-))}
-          </ListGroup>
-        </div>
-      </div>
-      <Button variant="primary" onClick={() => setShowModal(true)}>
+      <Button
+        variant="primary"
+        onClick={() => setShowModal(true)}
+        style={{ margin: "auto", padding: '7px 40px' }}
+      >
         Add Task
       </Button>
+
+      <div className="container">
+        <div className="row" style={{ marginBottom: '30px' }}>
+          <div className="col-md-6">
+            <h2 className="headingstyle">Pending</h2>
+            <ListGroup>
+              {pending.map((task, index) => (
+                <ListGroup.Item
+                  key={index}
+                  className="list-group-item list-group-item-warning"
+                  onClick={() => handleCheck(task)}
+                >
+                  {task}
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+          </div>
+          <div className="col-md-6">
+            <h2 className="headingstyle">Completed</h2>
+            <ListGroup>
+              {completed.map((task, index) => (
+                <ListGroup.Item
+                  key={index}
+                  className="list-group-item list-group-item-primary"
+                  onClick={() => handleCheck(task)}
+                >
+                  <FaCheck /> {task} <FaCheck />
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+          </div>
+        </div>
+      </div>
+
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Add Task</Modal.Title>
@@ -93,16 +101,15 @@ function TodoApp() {
           />
         </Modal.Body>
 
-        <Modal.Footer >
+        <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleAddTask} >
+          <Button variant="primary" onClick={handleAddTask}>
             Add Task
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
     </>
   );
 }

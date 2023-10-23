@@ -49,7 +49,7 @@ function TodoApp() {
 
       <div className="row"  style={{marginBottom:'30px'}}>
         <div className="col-md-6">
-          <h2>Pending</h2>
+          <h2 className="headingstyle">Pending</h2>
           <ListGroup>
             {pending.map((task, index) => (
               <ListGroup.Item
@@ -63,7 +63,7 @@ function TodoApp() {
           </ListGroup>
         </div>
         <div className="col-md-6">
-          <h2>Completed</h2>
+          <h2 className="headingstyle">Completed</h2>
           <ListGroup>
           {completed.map((task, index) => (
   <ListGroup.Item
